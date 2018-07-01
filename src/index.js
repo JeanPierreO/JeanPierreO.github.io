@@ -1,6 +1,5 @@
 import $ from "jquery";
 import idb from "idb";
-import {init} from './sw.js';
 import moment from "moment";
 
 
@@ -36,7 +35,7 @@ class App {
 
 function registerServiceWorker() {
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./dist/sw.js').then((reg) => {
+    navigator.serviceWorker.register('./sw.js').then((reg) => {
     }).catch((err) => {
       console.log(err);
     });

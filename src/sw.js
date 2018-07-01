@@ -38,21 +38,20 @@ const staticCacheName = `${version}static-resources`;
         var requestUrl = new URL(event.request.url);
         console.log(event.request.ur);
         if (requestUrl.origin === location.origin) {
-            if (requestUrl.pathname === '/dist/index.html') {
-                event.respondWith(caches.match('/dist/index.html'));
+            if (requestUrl.pathname === '/') {
+                event.respondWith(caches.match('/index.html'));
                 return;
             }
 
-            if (requestUrl.pathname === '/dist/style.css') {
-                event.respondWith(caches.match('/dist/style.css'));
+            if (requestUrl.pathname === '/style.css') {
+                event.respondWith(caches.match('/style.css'));
                 return;
             }
 
-            if (requestUrl.pathname === '/dist/app.js') {
-                event.respondWith(caches.match('/dist/app.js'));
+            if (requestUrl.pathname === '/app.js') {
+                event.respondWith(caches.match('/app.js'));
                 return;
             }
-            
         }
       });   
 
