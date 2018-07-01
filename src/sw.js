@@ -15,23 +15,23 @@ const staticCacheName = `${version}static-resources`;
         )
     })
 
-    // self.addEventListener('activate', function (event) {
-    //     event.waitUntil(
-    //         caches
-    //             .keys()
-    //             .then((keys) => {
-    //                 return Promise.all(
-    //                     keys
-    //                         .filter((key) => {
-    //                             return !key.startsWith(version);
-    //                         })
-    //                         .map((key) => {
-    //                             return caches.delete(key);
-    //                         })
-    //                 );
-    //             })
-    //     )
-    // });
+    self.addEventListener('activate', function (event) {
+        event.waitUntil(
+            caches
+                .keys()
+                .then((keys) => {
+                    return Promise.all(
+                        keys
+                            .filter((key) => {
+                                return !key.startsWith(version);
+                            })
+                            .map((key) => {
+                                return caches.delete(key);
+                            })
+                    );
+                })
+        )
+    });
 
 
     self.addEventListener('fetch', function(event) {
