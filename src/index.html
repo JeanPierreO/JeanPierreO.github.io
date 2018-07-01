@@ -1,0 +1,55 @@
+<html>
+
+<head>
+    <title>Currency Converter</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+        <link rel="stylesheet" href="./dist/style.css" type="text/css">
+</head>
+
+<body>
+    <div id="heading" class="roboto">
+        <h1 id="heading-text">Currency Converter</h1>
+    </div>
+
+    <div class="card">
+        <div class="currency-row">
+            <div class="currency">
+                <input type="text" class="currency-input-from open-sans" label="currency-input-from">
+                <div class="currency-select" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-label="currency-from">
+                    <p class="currency-text open-sans currency-select-text" aria-expanded="false" id="1">
+                        <span class="caret"></span>
+                    </p>
+
+                    <ul class="dropdown-menu"  id="currency-from" role="menu" aria-labelledby="dropdownMenu">
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="currency-row">
+            <p class="open-sans font-size-22">TO</p>
+        </div>
+        <div class="currency-row">
+            <div class="currency">
+                <input type="text" class="currency-input-to open-sans" label="currency-input-to">
+                <div class="currency-select" href="#"  id="currency-to" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-label="currency-to">
+                    <p class="currency-text open-sans currency-select-text" aria-expanded="false" id="2">
+                        <span class="caret"></span>
+                    </p>
+
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
