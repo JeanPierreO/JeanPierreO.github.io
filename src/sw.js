@@ -1,0 +1,60 @@
+const version = "v1::"
+const staticCacheName = `${version}static-resources`;
+
+
+    self.addEventListener('install', function(event) {
+        event.waitUntil(
+            caches.open(staticCacheName).then(function(cache) {
+                return cache.addAll([
+                    'index.html',
+                    'app.js',
+                    'style.css',
+                    'sw.js',
+                ])
+            })
+        )
+    })
+
+    self.addEventListener('activate', function (event) {
+        event.waitUntil(
+            caches
+                .keys()
+                .then((keys) => {
+                    return Promise.all(
+                        keys
+                            .filter((key) => {
+                                return !key.startsWith(version);
+                            })
+                            .map((key) => {
+                                return caches.delete(key);
+                            })
+                    );
+                })
+        )
+    });
+
+
+    self.addEventListener('fetch', function(event) {
+        var requestUrl = new URL(event.request.url);
+        console.log(event.request.ur);
+        if (requestUrl.origin === location.origin) {
+            if (requestUrl.pathname === '/dist/index.html') {
+                event.respondWith(caches.match('/dist/index.html'));
+                return;
+            }
+
+            if (requestUrl.pathname === '/dist/style.css') {
+                event.respondWith(caches.match('/dist/style.css'));
+                return;
+            }
+
+            if (requestUrl.pathname === '/dist/app.js') {
+                event.respondWith(caches.match('/dist/app.js'));
+                return;
+            }
+            
+        }
+      });   
+
+
+
