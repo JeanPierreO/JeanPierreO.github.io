@@ -6,64 +6,55 @@ const staticCacheName = `${version}static-resources`;
         event.waitUntil(
             caches.open(staticCacheName).then(function(cache) {
                 return cache.addAll([
-                    './dist/index.html',
-                    './dist/app.js',
-                    './dist/style.css',
-                    './dist/sw.js',
-                ]).then( () => {
-                    console.log('SW Install');
-                })
+                    './index.html',
+                    './app.js',
+                    './style.css',
+                    './sw.js',
+                ])
             })
         )
     })
 
-    self.addEventListener('activate', function (event) {
-        event.waitUntil(
-            caches
-                .keys()
-                .then((keys) => {
-                    return Promise.all(
-                        keys
-                            .filter((key) => {
-                                return !key.startsWith(version);
-                            })
-                            .map((key) => {
-                                return caches.delete(key);
-                            })
-                    );
-                })
-                .then(() => {
-                    console.log('SW Activated');
-                })
-        )
-    });
+    // self.addEventListener('activate', function (event) {
+    //     event.waitUntil(
+    //         caches
+    //             .keys()
+    //             .then((keys) => {
+    //                 return Promise.all(
+    //                     keys
+    //                         .filter((key) => {
+    //                             return !key.startsWith(version);
+    //                         })
+    //                         .map((key) => {
+    //                             return caches.delete(key);
+    //                         })
+    //                 );
+    //             })
+    //     )
+    // });
 
 
     self.addEventListener('fetch', function(event) {
         var requestUrl = new URL(event.request.url);
+        console.log(event.request.ur);
         if (requestUrl.origin === location.origin) {
             if (requestUrl.pathname === '/') {
                 event.respondWith(caches.match('./index.html'));
                 return;
             }
 
-            if (requestUrl.pathname === '/dist/style.css') {
-                event.respondWith(caches.match('./dist/style.css'));
+            if (requestUrl.pathname === '/style.css') {
+                event.respondWith(caches.match('./style.css'));
                 return;
             }
 
-            if (requestUrl.pathname === '/dist/app.js') {
-                event.respondWith(caches.match('./dist/app.js'));
-                return;
-            }
-
-            if (requestUrl.pathname === '/dist/sw.js') {
-                event.respondWith(caches.match('./dist/sw.js'));
+            if (requestUrl.pathname === '/app.js') {
+                event.respondWith(caches.match('./app.js'));
                 return;
             }
 
         }
-      });
+      });   
 
 
 

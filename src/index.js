@@ -38,6 +38,7 @@ function registerServiceWorker() {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/dist/sw.js').then((reg) => {
     }).catch((err) => {
+      console.log(err);
     });
   }
 }
