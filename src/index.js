@@ -174,7 +174,6 @@ function addDropwdownUpdateEvent() {
 }
 
 function checkCurrencies() {
-  console.log(toCurrency != undefined && fromCurrency != undefined);
   if (toCurrency != undefined && fromCurrency != undefined) {
     pullConversionID();
     if (toValueEntered != undefined && toValueEntered > 0) {

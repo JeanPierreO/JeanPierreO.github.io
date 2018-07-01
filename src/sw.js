@@ -10,7 +10,9 @@ const staticCacheName = `${version}static-resources`;
                     './dist/app.js',
                     './dist/style.css',
                     './dist/sw.js',
-                ])
+                ]).then( () => {
+                    console.log('SW Install');
+                })
             })
         )
     })
@@ -30,6 +32,9 @@ const staticCacheName = `${version}static-resources`;
                             })
                     );
                 })
+                .then(() => {
+                    console.log('SW Activated');
+                })
         )
     });
 
@@ -38,7 +43,7 @@ const staticCacheName = `${version}static-resources`;
         var requestUrl = new URL(event.request.url);
         if (requestUrl.origin === location.origin) {
             if (requestUrl.pathname === '/') {
-                event.respondWith(caches.match('./dist/index.html'));
+                event.respondWith(caches.match('./index.html'));
                 return;
             }
 
@@ -47,8 +52,13 @@ const staticCacheName = `${version}static-resources`;
                 return;
             }
 
-            if (requestUrl.pathname === '/app.js') {
+            if (requestUrl.pathname === '/dist/app.js') {
                 event.respondWith(caches.match('./dist/app.js'));
+                return;
+            }
+
+            if (requestUrl.pathname === '/dist/sw.js') {
+                event.respondWith(caches.match('./dist/sw.js'));
                 return;
             }
 
