@@ -6,10 +6,10 @@ const staticCacheName = `${version}static-resources`;
         event.waitUntil(
             caches.open(staticCacheName).then(function(cache) {
                 return cache.addAll([
-                    './index.html',
-                    './app.js',
-                    './style.css',
-                    './sw.js',
+                    'index.html',
+                    'app.js',
+                    'style.css',
+                    'sw.js',
                 ])
             })
         )
@@ -39,17 +39,17 @@ const staticCacheName = `${version}static-resources`;
         console.log(event.request.ur);
         if (requestUrl.origin === location.origin) {
             if (requestUrl.pathname === '/') {
-                event.respondWith(caches.match('./index.html'));
+                event.respondWith(caches.match('index.html'));
                 return;
             }
 
             if (requestUrl.pathname === '/style.css') {
-                event.respondWith(caches.match('./style.css'));
+                event.respondWith(caches.match('style.css'));
                 return;
             }
 
             if (requestUrl.pathname === '/app.js') {
-                event.respondWith(caches.match('./app.js'));
+                event.respondWith(caches.match('app.js'));
                 return;
             }
 
