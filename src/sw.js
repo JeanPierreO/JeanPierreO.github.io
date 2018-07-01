@@ -10,9 +10,7 @@ const staticCacheName = `${version}static-resources`;
                     './dist/app.js',
                     './dist/style.css',
                     './dist/sw.js',
-                ]).then( () => {
-                    console.log('SW Install');
-                })
+                ])
             })
         )
     })
@@ -31,9 +29,6 @@ const staticCacheName = `${version}static-resources`;
                                 return caches.delete(key);
                             })
                     );
-                })
-                .then(() => {
-                    console.log('SW Activated');
                 })
         )
     });

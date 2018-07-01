@@ -36,16 +36,13 @@ class App {
 
 function registerServiceWorker() {
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js').then((reg) => {
-        console.log('Service Worker is registered', reg);
+    navigator.serviceWorker.register('/dist/sw.js').then((reg) => {
     }).catch((err) => {
-        console.log('Service Worker is not registered', err);
     });
   }
 }
 
 function fetchCountries() {
-  console.log("calling api");
   fetch("https://free.currencyconverterapi.com/api/v5/countries")
     .then(response => {
       if (response.ok) {
@@ -60,7 +57,6 @@ function fetchCountries() {
       populateDB(data.results);
     })
     .catch(function(error) {
-      console.log(`Error: ${error.message}`);
     });
 }
 
@@ -153,21 +149,17 @@ function addDropwdownUpdateEvent() {
 
   $("#currency-from li").on("click", function() {
     fromCurrency = $(this).attr("value");
-    console.log('FROM CLICK');
     checkCurrencies();
   });
 
   $("#currency-to li").on("click", function() {
     toCurrency = $(this).attr("value");
-    console.log('TO CLICK');
     checkCurrencies();
   });
 
   $(".currency-input-from").on("input", function() {
     fromChanged = true;
-    console.log(convertValue);
     toValue = $(this).val() * convertValue;
-    console.log('toValue',toValue);
     fromValueEntered = $(this).val();
     toValueEntered = 0;
     $(".currency-input-to").val(toValue);
@@ -175,9 +167,7 @@ function addDropwdownUpdateEvent() {
 
   $(".currency-input-to").on("input", function() {
     fromChanged = false;
-    console.log(convertValue);
     fromValue = $(this).val() / convertValue;
-    console.log('fromValue',fromValue);
     toValueEntered = $(this).val();
     $(".currency-input-from").val(fromValue);
   });
@@ -216,7 +206,6 @@ function convertCurrency() {
     })
     .then(response => response.json())
     .then(data => {
-      console.log("PULLED DATA", data);
       convertValue = data.results[`${fromCurrency}_${toCurrency}`].val;
       addConversion(`${fromCurrency}_${toCurrency}`);
 
@@ -228,7 +217,6 @@ function convertCurrency() {
       
     })
     .catch(function(error) {
-      console.log(`Error: ${error.message}`);
     });
 }
 
